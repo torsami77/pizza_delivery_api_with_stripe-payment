@@ -1,5 +1,6 @@
+/*
 import { Request, Response, NextFunction } from 'express';
-import models from '../database/models';
+import models from '../database/database';
 import {
   status, messages, hashPassword, successResponse, errorResponse, 
   conflictResponse, Jwt, bcrypt
@@ -50,3 +51,4 @@ export default class AuthControllers {
     }
   }
 }
+*/

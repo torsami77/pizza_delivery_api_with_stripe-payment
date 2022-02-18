@@ -1,3 +1,4 @@
+/*
 import express from 'express';
 import { AuthControllers } from '../../controllers';
 import middleware from '../../middlewares';
@@ -14,3 +15,4 @@ router.post('/sign_up', validate('signUp'), signUpUser);
 router.post('/sign_in', validate('signIn'), signInUser);
 
 export default router;
+*/

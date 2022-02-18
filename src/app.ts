@@ -2,7 +2,8 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import { config } from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import router from './routes';
+//import router from './routes';
+import sequelize from './database/database';
 
 const app: Application = express();
 
@@ -21,13 +22,25 @@ app.get('/', (req: Request, res: Response) => {
     });
 })
 
-app.use('/api/v1/', router);
+//app.use('/api/v1/', router);
 
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
     const err = new Error('Not Found');
     next(err);
 });
 
 app.listen(PORT, () => {
     console.log(`Local server would be running on ${PORT}`)
+    sequelize.authenticate().then(async() => {
+        console.log("database connected");
+
+        try {
+            await sequelize.sync({force:true})
+        } catch(error:any){
+            console.log(error.message)
+        }
+
+    }).catch((e:any) => {
+        console.log(e.message)
+    })
 })
